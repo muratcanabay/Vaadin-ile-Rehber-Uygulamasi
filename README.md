@@ -1,4 +1,4 @@
-VaadinRehber
+Vaadin Framework ile Rehber Uygulaması
 ==============
 
-Template for a simple Vaadin application that only requires a Servlet 3.0 container to run.
+JDBC ve Vaadin Framework kullanılarak kodlanmış basit bir rehber uygulamasıdır.
