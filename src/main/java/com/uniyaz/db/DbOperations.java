@@ -1,12 +1,12 @@
 package com.uniyaz.db;
 
+import com.uniyaz.domain.Kisi;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.uniyaz.domain.Kisi;
-
-public class DbIslemleri {
+public class DbOperations {
     final String JDBC_CONNECTION_STR = "jdbc:mysql://127.0.0.1:3306/rehber?useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=Turkey";
     final String USERNAME = "root";
     final String PASSWORD = "root";
@@ -118,22 +118,22 @@ public class DbIslemleri {
                 Connection conn = DriverManager.getConnection(JDBC_CONNECTION_STR, USERNAME, PASSWORD);
                 PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
 
-                preparedStatement.setString(1, "%" + kisi.getAd() + "%");
-                ResultSet resultSet = preparedStatement.executeQuery();
+            preparedStatement.setString(1, "%" + kisi.getAd() + "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-                while (resultSet.next()) {
-                    int id = resultSet.getInt("id");
-                    String name = resultSet.getString("adi");
-                    String surname = resultSet.getString("soyadi");
-                    String phone = resultSet.getString("telNo");
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("adi");
+                String surname = resultSet.getString("soyadi");
+                String phone = resultSet.getString("telNo");
 
-                    Kisi kisiYeni = new Kisi();
-                    kisiYeni.setId(id);
-                    kisiYeni.setAd(name);
-                    kisiYeni.setSoyad(surname);
-                    kisiYeni.setTelNo(phone);
-                    kisiList.add(kisiYeni);
-                }
+                Kisi kisiYeni = new Kisi();
+                kisiYeni.setId(id);
+                kisiYeni.setAd(name);
+                kisiYeni.setSoyad(surname);
+                kisiYeni.setTelNo(phone);
+                kisiList.add(kisiYeni);
+            }
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         } catch (Exception e) {

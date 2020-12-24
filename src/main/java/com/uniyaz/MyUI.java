@@ -1,8 +1,6 @@
 package com.uniyaz;
 
-import javax.servlet.annotation.WebServlet;
-
-import com.uniyaz.db.DbIslemleri;
+import com.uniyaz.db.DbOperations;
 import com.uniyaz.domain.Kisi;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -12,6 +10,7 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
 import com.vaadin.ui.Button.ClickEvent;
 
+import javax.servlet.annotation.WebServlet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,10 +35,10 @@ public class MyUI extends UI {
         formLayout.addComponent(phoneField);
 
         Grid grid = new Grid();
-        grid.addColumn("Id",Integer.class);
-        grid.addColumn("Ad",String.class);
-        grid.addColumn("Soyad",String.class);
-        grid.addColumn("Tel No.",String.class);
+        grid.addColumn("Id", Integer.class);
+        grid.addColumn("Ad", String.class);
+        grid.addColumn("Soyad", String.class);
+        grid.addColumn("Tel No.", String.class);
 
         Button kisiEkleButton = new Button();
         kisiEkleButton.setCaption("Kisi Ekle");
@@ -51,8 +50,8 @@ public class MyUI extends UI {
                 kisi.setSoyad(surnameField.getValue());
                 kisi.setTelNo(phoneField.getValue());
 
-                DbIslemleri dbIslemleri = new DbIslemleri();
-                dbIslemleri.kisiEkle(kisi);
+                DbOperations dbOperations = new DbOperations();
+                dbOperations.kisiEkle(kisi);
                 Notification.show("Kisi Eklendi.");
             }
         });
@@ -64,13 +63,13 @@ public class MyUI extends UI {
             public void buttonClick(ClickEvent clickEvent) {
 
                 List<Kisi> kisiList = new ArrayList<>();
-                DbIslemleri dbIslemleri = new DbIslemleri();
-                kisiList=dbIslemleri.kisiListele();
+                DbOperations dbOperations = new DbOperations();
+                kisiList = dbOperations.kisiListele();
 
                 grid.getContainerDataSource().removeAllItems();
 
-                for (Kisi k:kisiList) {
-                    grid.addRow(k.getId(),k.getAd(),k.getSoyad(),k.getTelNo());
+                for (Kisi k : kisiList) {
+                    grid.addRow(k.getId(), k.getAd(), k.getSoyad(), k.getTelNo());
                 }
                 formLayout.addComponent(grid);
             }
@@ -85,8 +84,8 @@ public class MyUI extends UI {
                 kisi.setAd(nameField.getValue());
                 kisi.setSoyad(surnameField.getValue());
 
-                DbIslemleri dbIslemleri = new DbIslemleri();
-                dbIslemleri.kisiSil(kisi);
+                DbOperations dbOperations = new DbOperations();
+                dbOperations.kisiSil(kisi);
                 Notification.show("Kisi basariyla silindi.");
             }
         });
@@ -97,15 +96,15 @@ public class MyUI extends UI {
             @Override
             public void buttonClick(ClickEvent clickEvent) {
                 List<Kisi> kisiList = new ArrayList<>();
-                DbIslemleri dbIslemleri = new DbIslemleri();
+                DbOperations dbOperations = new DbOperations();
                 Kisi kisi = new Kisi();
                 kisi.setAd(nameField.getValue());
-                kisiList=dbIslemleri.kisiAra(kisi);
+                kisiList = dbOperations.kisiAra(kisi);
 
                 grid.getContainerDataSource().removeAllItems();
 
-                for (Kisi k:kisiList) {
-                    grid.addRow(k.getId(),k.getAd(),k.getSoyad(),k.getTelNo());
+                for (Kisi k : kisiList) {
+                    grid.addRow(k.getId(), k.getAd(), k.getSoyad(), k.getTelNo());
                 }
                 formLayout.addComponent(grid);
             }
