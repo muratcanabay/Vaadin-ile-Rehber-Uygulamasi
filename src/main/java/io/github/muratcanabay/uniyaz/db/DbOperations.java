@@ -1,6 +1,6 @@
-package com.uniyaz.db;
+package io.github.muratcanabay.uniyaz.db;
 
-import com.uniyaz.domain.Kisi;
+import io.github.muratcanabay.uniyaz.domain.Kisi;
 
 import java.sql.*;
 import java.util.ArrayList;
