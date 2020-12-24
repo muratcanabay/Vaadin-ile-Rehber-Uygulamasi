@@ -1,4 +1,3 @@
-Vaadin Framework ile Rehber Uygulaması
-==============
+## Projenin Amacı
 
-JDBC ve Vaadin Framework kullanılarak kodlanmış basit bir rehber uygulamasıdır.
+JDBC ve Vaadin 7 Framework kullanılarak kodlanmış basit bir telefon rehberi uygulamasıdır.
