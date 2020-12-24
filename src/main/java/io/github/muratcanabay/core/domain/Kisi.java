@@ -1,4 +1,4 @@
-package io.github.muratcanabay.uniyaz.domain;
+package io.github.muratcanabay.core.domain;
 
 public class Kisi {
     public int id;
